@@ -6,3 +6,6 @@ int main(void) {
  printf(1, "Today is %d\n", getday());
  exit();
 }
+
+
+//////
