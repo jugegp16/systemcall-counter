@@ -98,8 +98,5 @@ sys_getday(void){
 
 int
 sys_getcount(uint num){
-  uint res;
-  res = syscalls[num]()->count;
-
-  return res;
+  return myproc()->count[num];
 }

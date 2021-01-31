@@ -123,7 +123,9 @@ found:
   p->context->eip = (uint)forkret;
 
   // initialize count as 0
-  p->count = 0;
+  for (int i=1;i<24;i++){
+    p->count[i]=0;
+  }
 
   return p;
 }
