@@ -6,6 +6,7 @@
 #include "memlayout.h"
 #include "mmu.h"
 #include "proc.h"
+#include "syscall.c"
 
 int
 sys_fork(void)
@@ -93,4 +94,12 @@ sys_uptime(void)
 int
 sys_getday(void){
   return 29;
+}
+
+int
+sys_getcount(uint num){
+  uint res;
+  res = syscalls[num]()->count;
+
+  return res;
 }

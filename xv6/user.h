@@ -24,6 +24,7 @@ char* sbrk(int);
 int sleep(int);
 int uptime(void);
 int getday(void);
+int getcount(uint);
 
 // ulib.c
 int stat(const char*, struct stat*);

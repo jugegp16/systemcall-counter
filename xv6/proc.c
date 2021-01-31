@@ -76,15 +76,25 @@ allocproc(void)
   struct proc *p;
   char *sp;
 
+  //
+  // Look in the process table for an UNUSED proc.
+  //
   acquire(&ptable.lock);
 
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
     if(p->state == UNUSED)
       goto found;
 
+  //
+  // Otherwise if not found, return 0.
+  // 
   release(&ptable.lock);
   return 0;
 
+//
+// If found, change state to EMBRYO and initialize
+// state required to run in the kernel.
+// 
 found:
   p->state = EMBRYO;
   p->pid = nextpid++;
@@ -111,6 +121,9 @@ found:
   p->context = (struct context*)sp;
   memset(p->context, 0, sizeof *p->context);
   p->context->eip = (uint)forkret;
+
+  // initialize count as 0
+  p->count = 0;
 
   return p;
 }
