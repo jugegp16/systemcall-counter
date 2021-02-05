@@ -189,6 +189,10 @@ fork(void)
     return -1;
   }
 
+  for (i=0;i<22;i++){
+    np->count[i]=0;
+  }
+
   // Copy process state from proc.
   if((np->pgdir = copyuvm(curproc->pgdir, curproc->sz)) == 0){
     kfree(np->kstack);
